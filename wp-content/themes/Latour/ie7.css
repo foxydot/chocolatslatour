@@ -1,0 +1,18 @@
+#menu ul li ul {
+	display: none;
+	border: 1px solid #996633;
+	border-bottom: 0;
+	margin: 25px 0 0 -125px;
+	padding: 0;
+	width: 150px;
+	position: absolute;
+	}
+	
+#menu ul li ul li {
+	display: block;
+	border-bottom: 1px solid #996633;
+	}
+	
+#menu ul li.current_page_item ul {
+	display: none;
+	}
