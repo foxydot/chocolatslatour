@@ -12,29 +12,6 @@ function msdlab_pre_header(){
     </div>';
 }
 
-//add language widget after subnav
-function good_advice_language_widget(){
-    $instance = array (
-    'type' => 'both',
-    'hide-title' => 'on',
-  );
-  $attr = array();
-  ob_start();
-  the_widget('qTranslateWidget',$instance,$attr);
-  $ret = ob_get_contents();
-  ob_end_clean();
-  preg_match('@<ul.*?>(.*?)</ul>@i',$ret,$matches);
-  return $matches[0];
-}
-
-function good_advice_subnav_right( $menu, $args ) {
-    $args = (array) $args;
-    $langs = good_advice_language_widget();
-    $menu = preg_replace('@<a.*?>Choose Language</a>@i','<a href="#">Choose Language</a>'."\n".$langs,$menu);
-    return $menu;
-}
-
-
  /**
  * Customize search form input
  */
@@ -61,6 +38,7 @@ function msdlab_search_form($form, $search_text, $button_text, $label){
         $form = sprintf( '<form method="get" class="searchform search-form" action="%s" role="search" >%s<input type="text" value="%s" name="s" class="s search-input" onfocus="%s" onblur="%s" /><input type="submit" class="searchsubmit search-submit" value="%s" /></form>', home_url( '/' ), esc_html( $label ), esc_attr( $search_text ), esc_attr( $onfocus ), esc_attr( $onblur ), esc_attr( $button_text ) );
     return $form;
 }
+
 
 /*** NAV ***/
 
