@@ -61,7 +61,14 @@ function msdlab_ro_layout_logic() {
 }
 
 /*** CONTENT ***/
-
+function msdlab_post_title_text($text){
+    global $post;
+    if(is_page() || is_single()){
+        return $text;
+    } else {
+       return $text; 
+    }
+}
 /**
  * Move titles
  */
@@ -71,6 +78,18 @@ function msdlab_do_title_area(){
     do_action('msdlab_title_area');
     print '</div>';
     print '</div>';
+}
+
+function msdlab_title_area_content(){
+    global $post;
+    if(is_post_type_archive( 'product' )){
+        print '<h1 itemprop="headline" class="entry-title">';
+        woocommerce_page_title();
+        print '</h1>';
+        add_filter('woocommerce_show_page_title',false);
+    } else {
+        genesis_do_post_title();
+    }
 }
 
 /**
